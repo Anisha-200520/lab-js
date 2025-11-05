@@ -1,74 +1,40 @@
-// 📇 Step 1: Create an array of contact objects
-const contacts = [
-  {
-    name: "anisha",
-    phone: "9876543210",
-    email: "anisha@example.com",
-    displayInfo() {
-      const { name, phone, email } = this; 
-      console.log(`Name: ${name}, Phone: ${phone}, Email: ${email}`);
-    }
-  },
-  {
-    name: "Anu",
-    phone: "9123456780",
-    email: "anu@example.com",
-    displayInfo() {
-      const { name, phone, email } = this;
-      console.log(`Name: ${name}, Phone: ${phone}, Email: ${email}`);
-    }
+// 📘 Book class
+class Book {
+  constructor(title, author, publisher, publishedDate) {
+    this.title = title;
+    this.author = author;
+    this.publisher = publisher;
+    this.publishedDate = new Date(publishedDate); // Store as Date object
   }
-];
 
-// 🧾 Step 2: Access properties using dot and bracket notation
-console.log(contacts[0].name);        
-console.log(contacts[1]["email"]);       
-
-// 🔁 Step 3: Iterate through contacts and display info
-contacts.forEach(contact => contact.displayInfo());
-
-// ➕ Step 4: Function to add multiple contacts using rest parameters
-function addContacts(...newContacts) {
-  contacts.push(...newContacts); 
+  // Method to return a summary of the book
+  summary() {
+    return `📖 "${this.title}" by ${this.author}, published by ${this.publisher} in ${this.publishedDate.getFullYear()}.`;
+  }
 }
 
-addContacts(
-  {
-    name: "Priya",
-    phone: "9000012345",
-    email: "priya@example.com",
-    displayInfo() {
-      const { name, phone, email } = this;
-      console.log(`Name: ${name}, Phone: ${phone}, Email: ${email}`);
-    }
-  },
-  {
-    name: "Rahul",
-    phone: "8000087654",
-    email: "rahul@example.com",
-    displayInfo() {
-      const { name, phone, email } = this;
-      console.log(`Name: ${name}, Phone: ${phone}, Email: ${email}`);
-    }
+// 💻 Ebook subclass extending Book
+class Ebook extends Book {
+  constructor(title, author, publisher, publishedDate, fileName) {
+    super(title, author, publisher, publishedDate); // Call parent constructor
+    this.fileName = fileName;
   }
-);
 
-// 🔁 Step 5: Display all contacts again
-console.log("\n📋 All Contacts:");
-contacts.forEach(contact => contact.displayInfo());
+  // Overridden summary method to include file info
+  summary() {
+    return `${super.summary()} [File: ${this.fileName}]`;
+  }
+}
 
-// 🔄 Step 6: Demonstrate call(), apply(), bind()
-const externalDisplay = function () {
-  const { name, phone, email } = this;
-  console.log(`(External) Name: ${name}, Phone: ${phone}, Email: ${email}`);
-};
+// 🧪 Create instances and test
+const book1 = new Book("The Alchemist", "Paulo Coelho", "HarperCollins", "1993-05-01");
+const book2 = new Book("Clean Code", "Robert C. Martin", "Prentice Hall", "2008-08-01");
 
-console.log("\n📞 Using call():");
-externalDisplay.call(contacts[0]);
+const ebook1 = new Ebook("JavaScript Essentials", "Benisha Dev", "CodePress", "2023-01-15", "js_essentials.pdf");
+const ebook2 = new Ebook("Python for Beginners", "Anisha AI", "TechBooks", "2022-07-10", "python_beginners.epub");
 
-console.log("\n📧 Using apply():");
-externalDisplay.apply(contacts[1]);
-
-console.log("\n🔗 Using bind():");
-const boundDisplay = externalDisplay.bind(contacts[2]);
-boundDisplay();
+// 🖨️ Display summaries
+console.log(book1.summary());
+console.log(book2.summary());
+console.log(ebook1.summary());
+console.log(ebook2.summary());
