@@ -1,13 +1,20 @@
-// Function expression
-const multiply = function(a, b) {
-  return a * b;
+const student = {
+  name: "Anisha",
+  age: 20,
+  displayInfo: function() {
+    console.log(`Name: ${this.name}, Age: ${this.age}`);
+  }
 };
-console.log(multiply(3, 4)); 
 
-// Arrow function
-const divide = (a, b) => a / b;
-console.log(divide(10, 2)); 
+student.displayInfo(); 
 
-// Arrow function with implicit return
-const square = x => x * x;
-console.log(square(5)); 
+student.greet = function() {
+  console.log(`Hello, I'm ${this.name}`);
+};
+
+student.greet(); 
+
+
+console.log(student.age); 
+student.age = 22;
+console.log(student.age); 
