@@ -1,25 +1,29 @@
-let numberType = 42;
-let stringType = "Hello";
-let booleanType = true;
-let nullType = null;
-let undefinedType;
-let symbolType = Symbol("id");
+//while loop
 
-console.log(typeof numberType);     
-console.log(typeof stringType);      
-console.log(typeof booleanType);     
-console.log(typeof nullType);        
-console.log(typeof undefinedType);   
-console.log(typeof symbolType);      
+let i = 1;
+while (i <= 10) {
+  console.log(i);
+  i++;
+}
 
+//do-while
 
-let str = "123";
-let num = Number(str);
-console.log("String to Number:", num, typeof num);
+let input;
+do {
+  input = prompt("Enter the number 5:");
+} while (parseInt(input) !== 5);
+console.log("Correct input!");
 
-let numToStr = String(456);
-console.log("Number to String:", numToStr, typeof numToStr);
+//for
+let sum = 0;
+for (let i = 1; i <= 5; i++) {
+  sum += i;
+}
+console.log("Sum:", sum);
 
-
-console.log("5" - 2);  
-console.log("5" + 2); 
+//nested for
+for (let i = 1; i <= 10; i++) {
+  for (let j = 1; j <= 10; j++) {
+    console.log(`${i} x ${j} = ${i * j}`);
+  }
+}
