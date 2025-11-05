@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toy Analysis Project</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+    h2 { color: #333; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 30px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #eee; }
+  </style>
+</head>
+<body>
+
+  <h2>🧩 Task 1 & 2: Toy Construction Data</h2>
+  <table id="constructionTable"></table>
+
+  <h2>🔍 Task 3: Function Context & Safety</h2>
+  <table id="functionTable"></table>
+
+  <script>
+    class Toy {
+      constructor(name, materials, joiningMethod, manufacturingProcess) {
+        this.name = name;
+        this.materials = materials;
+        this.joiningMethod = joiningMethod;
+        this.manufacturingProcess = manufacturingProcess;
+      }
+
+      getConstructionDetails() {
+        return {
+          "Toy Name": this.name,
+          "Materials Used": this.materials,
+          "Joining Method": this.joiningMethod,
+          "Manufacturing Process": this.manufacturingProcess
+        };
+      }
+    }
+
+    class ToyWithFunction extends Toy {
+      constructor(name, materials, joiningMethod, manufacturingProcess, functionDesc, safetyNotes, researchReference) {
+        super(name, materials, joiningMethod, manufacturingProcess);
+        this.functionDesc = functionDesc;
+        this.safetyNotes = safetyNotes;
+        this.researchReference = researchReference;
+      }
+
+      getFunctionContext() {
+        return {
+          "Toy Name": this.name,
+          "Function": this.functionDesc,
+          "Safety Notes": this.safetyNotes,
+          "Research Reference": this.researchReference
+        };
+      }
+    }
+
+    const toys = [
+      new ToyWithFunction("Puzzle Cube", "ABS Plastic", "Snap-fit", "Injection Molding",
+        "Enhances cognitive skills and hand-eye coordination",
+        "Non-toxic plastic, smooth edges for safety",
+        "BIS safety standards for plastic toys"),
+
+      new ToyWithFunction("Plush Doll", "Cotton, Polyester", "Stitching", "Sewing",
+        "Comfort toy for emotional bonding",
+        "Hypoallergenic fabric, securely stitched",
+        "CE certification for textile toys"),
+
+      new ToyWithFunction("Toy Car", "Plastic, Rubber", "Screws", "Assembly Line",
+        "Encourages imaginative play and motor skills",
+        "Rounded edges, durable wheels",
+        "ASTM F963 compliance for mechanical toys"),
+
+      new ToyWithFunction("Action Figure", "PVC, Paint", "Glue", "Casting",
+        "Role-play and storytelling",
+        "Paint safety, no detachable small parts",
+        "EN71 European toy safety standards"),
+
+      new ToyWithFunction("Electronic Toy", "Plastic, Circuit", "Screws, Soldering", "PCB Assembly",
+        "Interactive learning with lights and sound",
+        "Battery compartment secured, low voltage",
+        "IEC 62115 for electrical toy safety")
+    ];
+
+    function renderTable(dataArray, tableId) {
+      const table = document.getElementById(tableId);
+      const headers = Object.keys(dataArray[0]);
+      const headerRow = document.createElement("tr");
+
+      headers.forEach(header => {
+        const th = document.createElement("th");
+        th.textContent = header;
+        headerRow.appendChild(th);
+      });
+      table.appendChild(headerRow);
+
+      dataArray.forEach(item => {
+        const row = document.createElement("tr");
+        headers.forEach(header => {
+          const td = document.createElement("td");
+          td.textContent = item[header];
+          row.appendChild(td);
+        });
+        table.appendChild(row);
+      });
+    }
+
+    const constructionData = toys.map(toy => toy.getConstructionDetails());
+    const functionData = toys.map(toy => toy.getFunctionContext());
+
+    renderTable(constructionData, "constructionTable");
+    renderTable(functionData, "functionTable");
+  </script>
+
+</body>
+</html>
